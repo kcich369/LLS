@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLS.Identity.Api", "LLS.Ide
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLS.Identity.Infrastructure", "LLS.Identity.Infrastructure\LLS.Identity.Infrastructure.csproj", "{F74721E5-176D-4E70-B7F7-7A9616496715}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSS.Identity.Database", "LSS.Identity.Database\LSS.Identity.Database.csproj", "{0EACD98B-C99E-4C9F-A533-0FFC11B2333B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLS.Identity.Database", "LLS.Identity.Database\LLS.Identity.Database.csproj", "{0EACD98B-C99E-4C9F-A533-0FFC11B2333B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
