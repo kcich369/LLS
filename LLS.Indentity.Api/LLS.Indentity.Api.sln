@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLS.Indentity.Api", "LLS.Indentity.Api\LLS.Indentity.Api.csproj", "{B3424938-73FE-43F6-95FD-D6B008A14057}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLS.Identity.Infrastructure", "LLS.Identity.Infrastructure\LLS.Identity.Infrastructure.csproj", "{8F9E835E-BBAF-4398-9E5F-0D1FD2CA25CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{B3424938-73FE-43F6-95FD-D6B008A14057}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3424938-73FE-43F6-95FD-D6B008A14057}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3424938-73FE-43F6-95FD-D6B008A14057}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F9E835E-BBAF-4398-9E5F-0D1FD2CA25CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F9E835E-BBAF-4398-9E5F-0D1FD2CA25CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F9E835E-BBAF-4398-9E5F-0D1FD2CA25CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F9E835E-BBAF-4398-9E5F-0D1FD2CA25CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
