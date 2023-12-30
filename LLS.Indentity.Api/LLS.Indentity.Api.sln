@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLS.Indentity.Api", "LLS.Indentity.Api\LLS.Indentity.Api.csproj", "{B3424938-73FE-43F6-95FD-D6B008A14057}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLS.Identity.Api", "LLS.Identity.Api\LLS.Identity.Api.csproj", "{B3424938-73FE-43F6-95FD-D6B008A14057}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLS.Identity.Infrastructure", "LLS.Identity.Infrastructure\LLS.Identity.Infrastructure.csproj", "{F74721E5-176D-4E70-B7F7-7A9616496715}"
 EndProject

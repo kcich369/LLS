@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\LSS.Identity.Database\LSS.Identity.Database.csproj" />
+    </ItemGroup>
+
 </Project>
