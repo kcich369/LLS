@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLS.Identity.Infrastructure
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLS.Identity.Database", "LLS.Identity.Database\LLS.Identity.Database.csproj", "{0EACD98B-C99E-4C9F-A533-0FFC11B2333B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLS.Identity.Domain", "LLS.Identity.Domain\LLS.Identity.Domain.csproj", "{42ACC2A5-A54B-4601-9ED4-E142E9143CA6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{0EACD98B-C99E-4C9F-A533-0FFC11B2333B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EACD98B-C99E-4C9F-A533-0FFC11B2333B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EACD98B-C99E-4C9F-A533-0FFC11B2333B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42ACC2A5-A54B-4601-9ED4-E142E9143CA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42ACC2A5-A54B-4601-9ED4-E142E9143CA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42ACC2A5-A54B-4601-9ED4-E142E9143CA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42ACC2A5-A54B-4601-9ED4-E142E9143CA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
