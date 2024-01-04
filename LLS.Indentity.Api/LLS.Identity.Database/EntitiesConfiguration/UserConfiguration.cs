@@ -1,4 +1,4 @@
-﻿using LLS.Identity.Database.Models;
+﻿using LLS.Identity.Database.IdentityModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

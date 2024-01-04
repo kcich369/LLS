@@ -1,8 +1,13 @@
 using LLS.Identity.Database.Context;
 using LLS.Identity.Database.Extensions;
-using LLS.Identity.Database.Models;
+using LLS.Identity.Database.IdentityModels;
+using LLS.Identity.Domain.Configurations;
+using LLS.Identity.Infrastructure;
+using LLS.Identity.Infrastructure.Extensions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,9 +27,10 @@ builder.Services
     .AddEntityFrameworkStores<LlsIdentityDbContext>()
     .AddDefaultTokenProviders();
 
-builder.Services
-    .AddAuthorization()
-    .AddAuthentication();
+builder.Services.AddSingleton<JwtConfiguration>(builder.Configuration);
+
+builder.Services.AddAuthentication(builder.Configuration.BindSection<JwtConfiguration>("JWT"));
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
