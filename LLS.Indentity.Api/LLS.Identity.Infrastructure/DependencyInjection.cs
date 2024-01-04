@@ -10,6 +10,7 @@ public static class DependencyInjection
     {
         serviceCollection.AddScoped<IAuthService, AuthService>();
         serviceCollection.AddScoped<IJwtTokenProvider, JwtTokenProvider>();
+        serviceCollection.AddScoped<ILoginService, LoginService>();
         return serviceCollection;
     }
 }

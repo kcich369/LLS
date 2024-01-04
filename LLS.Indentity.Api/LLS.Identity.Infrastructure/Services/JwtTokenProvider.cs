@@ -21,6 +21,7 @@ public class JwtTokenProvider(JwtConfiguration config) : IJwtTokenProvider
             new Claim(ClaimTypes.MobilePhone,userData.PhoneNumber),
             new Claim(ClaimTypes.Role,userData.Role)
         };
+        
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config.Key));
         var signingCred = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512Signature);
 

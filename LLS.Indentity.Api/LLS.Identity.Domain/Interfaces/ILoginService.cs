@@ -3,7 +3,7 @@ using LLS.Identity.Domain.Results;
 
 namespace LLS.Identity.Domain.Interfaces;
 
-public interface IAuthService
+public interface ILoginService
 {
-    public Task<IResult<bool>> Register(RegisterUser registerUser);
+    Task<IResult<string>> Login(LoginUser loginUser);
 }
