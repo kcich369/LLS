@@ -1,11 +1,15 @@
-﻿namespace LLS.Identity.Database.Commands;
+﻿namespace LLS.Identity.Domain.Commands;
 
 public record RegisterUser(
     string Name,
-    string SecondName,
+    string Surname,
+    string UserName,
     string Email,
-    string Login,
     string PhoneNumber,
+    string Password,
+    string Street ,
+    string BuildingNumber,
     string City,
     string Voivodeship,
-    string Country);
+    string Country,
+    string ZipCode);

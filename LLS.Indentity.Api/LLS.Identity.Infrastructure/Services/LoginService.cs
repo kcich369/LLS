@@ -10,11 +10,14 @@ public class LoginService(UserManager<User> userManager, IJwtTokenProvider jwtTo
 {
     public async Task<IResult<string>> Login(LoginUser loginUser)
     {
-        var user = await userManager.FindByEmailAsync(loginUser.Login);
+        User user = null;
+        user = await userManager.FindByEmailAsync(loginUser.Login);
+        user = await userManager.FindByNameAsync(loginUser.Login);
         if (user is null)
             return Result<string>.Error("Dane logowania są nieprawidłowe");
-        if (await userManager.CheckPasswordAsync(user, loginUser.Password))
+        if (!await userManager.CheckPasswordAsync(user, loginUser.Password))
             return Result<string>.Error("Dane logowania są nieprawidłowe");
-        return Result<string>.Success(jwtTokenProvider.GenerateToken(user.ToUserData()));
+        var role = await userManager.GetRolesAsync(user);
+        return Result<string>.Success(jwtTokenProvider.GenerateToken(user.ToUserData().SetRole(role)));
     }
 }

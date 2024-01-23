@@ -1,6 +1,6 @@
 ﻿namespace LLS.Identity.Domain.Dtos;
 
-public sealed class RegisterUser
+public sealed class RegisterUserDto
 {
     public string Name { get; set; }
     public string Surname { get; set; }

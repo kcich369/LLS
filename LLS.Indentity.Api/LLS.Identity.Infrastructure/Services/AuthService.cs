@@ -1,5 +1,6 @@
 ﻿using LLS.Identity.Database.Commands;
 using LLS.Identity.Database.IdentityModels;
+using LLS.Identity.Domain.Commands;
 using LLS.Identity.Domain.Interfaces;
 using LLS.Identity.Domain.Results;
 using Microsoft.AspNetCore.Identity;

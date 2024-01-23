@@ -1,4 +1,5 @@
 ﻿using LLS.Identity.Database.Commands;
+using LLS.Identity.Domain.Commands;
 using LLS.Identity.Domain.Interfaces;
 
 namespace LLS.Identity.Api.MinimalApis;
@@ -13,20 +14,20 @@ public static class AuthApis
                     var result = await loginService.Login(loginUser);
                     if (result.IsError)
                         return Results.BadRequest(result.ErrorMessage);
-                    return Results.Ok(new { Token = result.IsError });
+                    return Results.Ok(new { Token = result.Data });
                 })
             .WithName("User auth")
             .WithOpenApi();
         
         routeBuilder.MapPost("auth/register",
-                async (LoginUser loginUser, ILoginService loginService) =>
+                async (RegisterUser registerUser, IRegisterService registerService) =>
                 {
-                    var result = await loginService.Login(loginUser);
+                    var result = await registerService.Reqister(registerUser);
                     if (result.IsError)
                         return Results.BadRequest(result.ErrorMessage);
-                    return Results.Ok(new { Token = result.IsError });
+                    return Results.Ok(result);
                 })
-            .WithName("User auth")
+            .WithName("User registration")
             .WithOpenApi();
     }
 }

@@ -19,9 +19,10 @@ public class JwtTokenProvider(JwtConfiguration config) : IJwtTokenProvider
             new Claim(ClaimTypes.NameIdentifier,userData.Id),
             new Claim(ClaimTypes.Email,userData.Email),
             new Claim(ClaimTypes.MobilePhone,userData.PhoneNumber),
-            new Claim(ClaimTypes.Role,userData.Role)
         };
-        
+        claims.AddRange(userData.Roles.Select(x=> new Claim(ClaimTypes.Role,x)));
+       
+
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config.Key));
         var signingCred = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512Signature);
 

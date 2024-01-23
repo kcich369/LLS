@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using LLS.Identity.Domain.Dtos;
+using LLS.Identity.Domain.Commands;
 
 namespace LLS.Identity.Infrastructure.Validators;
 
