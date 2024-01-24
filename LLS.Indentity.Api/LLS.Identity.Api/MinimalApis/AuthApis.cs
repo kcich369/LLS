@@ -29,5 +29,14 @@ public static class AuthApis
                 })
             .WithName("User registration")
             .WithOpenApi();
+             
+        routeBuilder.MapGet("auth/send",
+                async () =>
+                {
+                    return Results.Ok("OK, it works");
+                })
+            .WithName("User tokenisation")
+            .WithOpenApi()
+            .RequireAuthorization();
     }
 }

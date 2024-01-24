@@ -22,7 +22,6 @@ public class JwtTokenProvider(JwtConfiguration config) : IJwtTokenProvider
         };
         claims.AddRange(userData.Roles.Select(x=> new Claim(ClaimTypes.Role,x)));
        
-
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config.Key));
         var signingCred = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512Signature);
 
