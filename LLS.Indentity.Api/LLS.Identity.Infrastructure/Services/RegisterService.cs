@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using LLS.Identity.Database.IdentityModels;
 using LLS.Identity.Domain.Commands;
+using LLS.Identity.Domain.Enumerations;
 using LLS.Identity.Domain.Interfaces;
 using LLS.Identity.Domain.Results;
 using Microsoft.AspNetCore.Identity;
@@ -36,8 +37,7 @@ public sealed class RegisterService(
         if (!registrationResult.Succeeded)
             return Result<string>.Error(string.Join(';',
                 registrationResult.Errors.Select(x => $"{x.Code}: {x.Description}")));
-        await userManager.AddToRoleAsync(user, "User");
-        await userManager.AddToRoleAsync(user, "Admin");
+        await userManager.AddToRoleAsync(user, RoleEnum.User);
         return Result<string>.Success("User was created");
     }
 }

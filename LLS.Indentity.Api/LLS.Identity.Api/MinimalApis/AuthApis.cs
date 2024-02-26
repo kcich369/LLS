@@ -16,10 +16,10 @@ public static class AuthApis
                         return Results.BadRequest(result.ErrorMessage);
                     return Results.Ok(new { Token = result.Data });
                 })
-            .WithName("User auth")
+            .WithName("user")
             .WithOpenApi();
-        
-        routeBuilder.MapPost("auth/register",
+      
+   routeBuilder.MapPost("auth/register",
                 async (RegisterUser registerUser, IRegisterService registerService) =>
                 {
                     var result = await registerService.Reqister(registerUser);
@@ -29,14 +29,12 @@ public static class AuthApis
                 })
             .WithName("User registration")
             .WithOpenApi();
-             
-        routeBuilder.MapGet("auth/send",
-                async () =>
-                {
-                    return Results.Ok("OK, it works");
-                })
-            .WithName("User tokenisation")
-            .WithOpenApi()
-            .RequireAuthorization("");
+      
+   routeBuilder.MapGet("auth/send",
+                  () =>
+{
+            return Results.Ok("OK, it works");
+     
+        }).WithName("user auth valid").WithOpenApi().RequireAuthorization("admin");
     }
 }
