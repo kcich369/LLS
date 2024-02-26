@@ -34,6 +34,7 @@ builder.Services
 
 builder.Services.AddSingleton<JwtConfiguration>(builder.Configuration);
 builder.Services.AddAuthentication(builder.Configuration.BindSection<JwtConfiguration>("JWT")).AddAuthorization();
+
 builder.Services.RegisterInfrastructure();
 
 var app = builder.Build();

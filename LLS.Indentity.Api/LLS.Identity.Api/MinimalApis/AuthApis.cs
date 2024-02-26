@@ -37,6 +37,6 @@ public static class AuthApis
                 })
             .WithName("User tokenisation")
             .WithOpenApi()
-            .RequireAuthorization();
+            .RequireAuthorization("");
     }
 }
