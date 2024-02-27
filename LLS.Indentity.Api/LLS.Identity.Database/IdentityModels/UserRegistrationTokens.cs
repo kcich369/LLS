@@ -11,12 +11,15 @@ public class UserRegistrationTokens
     
     public DateTimeOffset CreatedAt { get; private set; }
     public DateTimeOffset UpdatedAt { get; private set; }
+        
+    public string UserId { get; private set; }
+    public User User { get; private set; }
 
     private UserRegistrationTokens()
     {
     }
     
-    private UserRegistrationTokens(string emailToken, string phoneToken)
+    private UserRegistrationTokens(string emailToken, string phoneToken, string userId)
     {
         EmailToken = emailToken;
         PhoneToken = phoneToken;

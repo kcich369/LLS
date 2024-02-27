@@ -10,5 +10,9 @@ public class UserRegistrationTokensConfiguration: IEntityTypeConfiguration<UserR
     {
         builder.Property(x => x.EmailToken).HasMaxLength(25);
         builder.Property(x => x.PhoneToken).HasMaxLength(6);
+
+        builder.HasOne(x => x.User)
+            .WithOne()
+            .HasForeignKey<UserRegistrationTokens>(x => x.UserId);
     }
 }

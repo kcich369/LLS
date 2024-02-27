@@ -15,9 +15,7 @@ public sealed class User : IdentityUser
     public DateTimeOffset UpdatedAt { get; private set; }
 
     public Address Address { get; private set; }
-    
-    public int RegistrationTokenId { get; private set; }
-    public UserRegistrationTokens RegistrationTokens { get; private set; }
+
 
     private User()
     {
@@ -33,7 +31,6 @@ public sealed class User : IdentityUser
         Surname = surname;
         Address = address;
         CreatedAt = DateTimeOffset.Now;
-        RegistrationTokens = UserRegistrationTokens.Create();
     }
 
     public static User Create(string userName, string email, string phoneNumber, string name, string surname,

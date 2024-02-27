@@ -19,9 +19,5 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             nb.Property(x => x.Country).HasMaxLength(150).HasColumnName($"{nameof(Address)}_{nameof(Address.Country)}");
             nb.Property(x => x.ZipCode).HasMaxLength(10).HasColumnName($"{nameof(Address)}_{nameof(Address.ZipCode)}");
         });
-
-        builder.HasOne(x => x.RegistrationTokens)
-            .WithOne()
-            .HasForeignKey<User>(x => x.RegistrationTokenId);
     }
 }
