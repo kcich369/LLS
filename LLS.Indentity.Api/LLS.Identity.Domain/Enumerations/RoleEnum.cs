@@ -9,7 +9,7 @@ public sealed class RoleEnum
     public static RoleEnum User = new RoleEnum(1, "User");
     
     public static RoleEnum[] All = new RoleEnum[] { Admin, User };
-    public static string[] AllArray = All.Select(x => x.Name).ToArray();
+    public static string[] AllNames = All.Select(x => x.Name).ToArray();
 
     private RoleEnum(int id, string name)
     {

@@ -6,7 +6,7 @@ namespace LLS.Identity.Infrastructure.Extensions;
 
 public static class ConfigurationsExtensions
 {
-    public static T BindSection<T>(this IConfigurationManager configurationBuilder, string sectionName)
+    public static T BindSection<T>(this IConfigurationManager configurationBuilder)
         where T : IConfiguration, new()
 
     {
@@ -16,7 +16,7 @@ public static class ConfigurationsExtensions
         return config;
     }
 
-    public static void AddSingleton<T>(this IServiceCollection services, IConfigurationManager configurationBuilder)
+    public static void AddConfigSingleton<T>(this IServiceCollection services, IConfigurationManager configurationBuilder)
         where T : class, IConfiguration, new()
     {
         var section = configurationBuilder.GetSection<T>();

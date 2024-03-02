@@ -32,10 +32,10 @@ builder.Services
     .AddEntityFrameworkStores<LlsIdentityDbContext>()
     .AddDefaultTokenProviders();
 
-builder.Services.AddSingleton<JwtConfiguration>(builder.Configuration);
-builder.Services.AddAuthentication(builder.Configuration.BindSection<JwtConfiguration>("JWT")).AddAuthorization();
+builder.Services.AddConfigSingleton<JwtConfiguration>(builder.Configuration);
+builder.Services.AddAuthentication(builder.Configuration.BindSection<JwtConfiguration>()).AddAuthorization();
 
-builder.Services.RegisterInfrastructure()
+builder.Services.RegisterInfrastructure(builder.Configuration)
     .AddPolicies();
 
 var app = builder.Build();
