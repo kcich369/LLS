@@ -22,7 +22,7 @@ public static class AuthApis
             .WithOpenApi();
 
         routeBuilder.MapPost("auth/register",
-                async (RegisterUser registerUser, IRegisterService registerService) =>
+                async (RegisterUser registerUser, IUserRegistrationService registerService) =>
                 {
                     var result = await registerService.Reqister(registerUser);
                     if (result.IsError)

@@ -23,4 +23,12 @@
       <ProjectReference Include="..\LLS.Identity.Domain\LLS.Identity.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="Migrations\20240227205809_InitialDb.Designer.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Migrations\" />
+    </ItemGroup>
+
 </Project>

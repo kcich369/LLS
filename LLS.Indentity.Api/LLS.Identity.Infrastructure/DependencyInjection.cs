@@ -18,15 +18,6 @@ public static class DependencyInjection
     public static IServiceCollection RegisterInfrastructure(this IServiceCollection serviceCollection,
         IConfigurationManager configurationBuilder)
     {
-        serviceCollection.AddValidatorsFromAssemblyContaining<RegisterUserValidation>();
-        serviceCollection.AddScoped<IAuthService, AuthService>();
-        serviceCollection.AddScoped<IJwtTokenProvider, JwtTokenProvider>();
-        serviceCollection.AddScoped<ILoginService, LoginService>();
-        serviceCollection.AddScoped<IRegisterService, RegisterService>();
-        serviceCollection.AddScoped<IEmailService, MailjetEmailService>();
-        serviceCollection.AddScoped<IRegistrationEmailService, RegistrationEmailService>();
-        serviceCollection.AddScoped<ISmsService, SmsPlanetService>();
-
         var mailJetConfig = configurationBuilder.BindSection<MailJetConfiguration>();
         serviceCollection.AddHttpClient<IMailjetClient, MailjetClient>(client =>
         {
@@ -40,6 +31,18 @@ public static class DependencyInjection
             httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", smsPlanetConfig.ApiKey);
         });
+
+        serviceCollection.AddValidatorsFromAssemblyContaining<RegisterUserValidation>();
+        serviceCollection.AddScoped<IAuthService, AuthService>();
+        serviceCollection.AddScoped<IJwtTokenProvider, JwtTokenProvider>();
+        serviceCollection.AddScoped<ILoginService, LoginService>();
+        serviceCollection.AddScoped<IUserRegistrationService, UserRegistrationService>();
+        serviceCollection.AddScoped<IEmailService, MailjetEmailService>();
+        serviceCollection.AddScoped<IRegistrationEmailService, RegistrationEmailService>();
+        serviceCollection.AddScoped<ISmsService, SmsPlanetService>();
+        serviceCollection.AddScoped<IUserTokenService, UserTokenService>();
+        serviceCollection.AddScoped<IUserEmailAndPhoneVerificationService, UserEmailAndPhoneVerificationService>();
+
         return serviceCollection;
     }
 }
