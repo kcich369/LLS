@@ -38,7 +38,6 @@ public static class DependencyInjection
         serviceCollection.AddScoped<ILoginService, LoginService>();
         serviceCollection.AddScoped<IUserRegistrationService, UserRegistrationService>();
         serviceCollection.AddScoped<IEmailService, MailjetEmailService>();
-        serviceCollection.AddScoped<IRegistrationEmailService, RegistrationEmailService>();
         serviceCollection.AddScoped<ISmsService, SmsPlanetService>();
         serviceCollection.AddScoped<IUserTokenService, UserTokenService>();
         serviceCollection.AddScoped<IUserEmailAndPhoneVerificationService, UserEmailAndPhoneVerificationService>();

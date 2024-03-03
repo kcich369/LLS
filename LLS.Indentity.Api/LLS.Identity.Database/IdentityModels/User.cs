@@ -39,4 +39,12 @@ public sealed class User : IdentityUser
 
     public UserData ToUserData() => new()
         { Id = Id, UserName = UserName, Email = Email, PhoneNumber = PhoneNumber };
+
+    public User Confirmed()
+    {
+        Active = true;
+        EmailConfirmed = true;
+        PhoneNumberConfirmed = true;
+        return this;
+    }
 }

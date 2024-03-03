@@ -51,10 +51,15 @@ public class UserEmailAndPhoneVerificationService : IUserEmailAndPhoneVerificati
             await _userTokenService.GetActive(user, UserTokenEnum.EmailConfirmation, _expirationSpan);
         var phoneActiveToken =
             await _userTokenService.GetActive(user, UserTokenEnum.PhoneConfirmation, _expirationSpan);
+        
         if (!string.IsNullOrEmpty(emailActiveToken) || string.IsNullOrEmpty(phoneActiveToken))
             return Result<bool>.Error("Inactive tokens");
         if (!string.Equals(emailToken, emailActiveToken) || !string.Equals(phoneToken, phoneActiveToken))
             return Result<bool>.Error("Incorrect tokens");
+        
+        await _userManager.UpdateAsync(user.Confirmed());
+        await _userTokenService.Remove(user, UserTokenEnum.EmailConfirmation);
+        await _userTokenService.Remove(user, UserTokenEnum.PhoneConfirmation);
         return Result<bool>.Success(true);
     }
 
