@@ -2,6 +2,7 @@
 using LLS.Identity.Domain.Enumerations;
 using LLS.Identity.Domain.Interfaces;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace LLS.Identity.Infrastructure.Services;
@@ -16,14 +17,14 @@ public interface IUserTokenService
 
 public class UserTokenService : IUserTokenService
 {
-    private readonly IUserAuthenticationTokenStore<User> _authenticationTokenStore;
     private readonly IDateTimeProvider _dateTimeProvider;
+    private readonly UserManager<User> _userManager;
 
-    public UserTokenService(IUserAuthenticationTokenStore<User> authenticationTokenStore,
+    public UserTokenService(UserManager<User> userManager,
         IDateTimeProvider dateTimeProvider)
     {
-        _authenticationTokenStore = authenticationTokenStore;
         _dateTimeProvider = dateTimeProvider;
+        _userManager = userManager;
     }
 
     public async Task<bool> Set(User user, UserTokenEnum userTokenEnum, string token)
@@ -33,8 +34,8 @@ public class UserTokenService : IUserTokenService
             Value = token,
             CreatedAt = _dateTimeProvider.Now()
         };
-        await _authenticationTokenStore.SetTokenAsync(user, userTokenEnum.Provider, userTokenEnum.Name,
-            JsonSerializer.Serialize(tokenDto), default);
+        await _userManager.SetAuthenticationTokenAsync(user, userTokenEnum.Provider, userTokenEnum.Name,
+            JsonSerializer.Serialize(tokenDto));
         return true;
     }
 
@@ -54,14 +55,13 @@ public class UserTokenService : IUserTokenService
 
     private async Task<TokenDto> GetToken(User user, UserTokenEnum userTokenEnum)
     {
-        var token = await _authenticationTokenStore.GetTokenAsync(user, userTokenEnum.Provider, userTokenEnum.Name,
-            default);
+        var token = await _userManager.GetAuthenticationTokenAsync(user, userTokenEnum.Provider, userTokenEnum.Name);
         return string.IsNullOrEmpty(token) ? null : JsonSerializer.Deserialize<TokenDto>(token);
     }
 
     public async Task<bool> Remove(User user, UserTokenEnum userTokenEnum)
     {
-        await _authenticationTokenStore.RemoveTokenAsync(user, userTokenEnum.Provider, userTokenEnum.Name, default);
+        await _userManager.RemoveAuthenticationTokenAsync(user, userTokenEnum.Provider, userTokenEnum.Name);
         return true;
     }
 }

@@ -17,7 +17,7 @@ public sealed class User : IdentityUser
     public Address Address { get; private set; }
 
 
-    private User()
+    public User()
     {
     }
 
