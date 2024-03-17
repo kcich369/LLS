@@ -1,6 +1,5 @@
 ﻿using System.Net.Http.Headers;
 using FluentValidation;
-using LLS.Identity.Database.IdentityModels;
 using LLS.Identity.Domain.Configurations;
 using LLS.Identity.Domain.ExternalServices;
 using LLS.Identity.Domain.Interfaces;
@@ -9,7 +8,6 @@ using LLS.Identity.Infrastructure.ExternalServices;
 using LLS.Identity.Infrastructure.Services;
 using LLS.Identity.Infrastructure.Validators;
 using Mailjet.Client;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

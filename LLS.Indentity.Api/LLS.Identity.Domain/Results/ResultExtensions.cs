@@ -1,8 +1,12 @@
-﻿namespace LLS.Identity.Domain.Results;
+﻿using LLS.Identity.Domain.Enumerations.ApiResponseEnumeration;
+using LLS.Identity.Domain.Enumerations.Base;
+
+namespace LLS.Identity.Domain.Results;
 
 public static class ResultExtensions
 {
-    public static async Task<IResult<T>> TryCatch<T>(this Task<IResult<T>> task, string errorMsg)
+    public static async Task<IResult<T>> TryCatch<T>(this Task<IResult<T>> task,
+        ApiResponseTypesEnumerations apiResponseTypes, string errorMsg)
     {
         try
         {
@@ -10,7 +14,7 @@ public static class ResultExtensions
         }
         catch
         {
-            return Result<T>.Error(errorMsg);
+            return Result<T>.Error(apiResponseTypes, errorMsg);
         }
     }
 }

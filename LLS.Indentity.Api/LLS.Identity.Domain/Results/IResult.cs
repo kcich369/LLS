@@ -1,9 +1,20 @@
-﻿namespace LLS.Identity.Domain.Results;
+﻿using LLS.Identity.Domain.Enumerations;
+
+namespace LLS.Identity.Domain.Results;
 
 public interface IResult
 {
     public bool IsError { get; }
-    public string ErrorMessage { get; }
+    public ResultInfo Info { get; }
+}
+
+public class ResultInfo
+{
+    public int TypeCode { get; set; }
+    public int ErrorCode { get; set; }
+
+    public StatusCodeEnumerations StatusCode { get; set; }
+    public string ErrorMessage { get; set; }
 }
 
 public interface IResult<out T> : IResult

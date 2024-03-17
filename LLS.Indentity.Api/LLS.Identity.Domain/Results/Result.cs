@@ -1,18 +1,44 @@
-﻿namespace LLS.Identity.Domain.Results;
+﻿using LLS.Identity.Domain.Enumerations.Base;
+
+namespace LLS.Identity.Domain.Results;
 
 public class Result : IResult
 {
-    public bool IsError { get; private set; }
-    public string ErrorMessage { get; private set; }
+    public bool IsError { get; protected init; }
+    public ResultInfo Info { get; private set; }
 
     protected Result()
     {
     }
 
-    protected Result( string errorMessage)
+    protected Result(ApiResponseTypesEnumerations apiResponseTypes, string errorMessage = null)
     {
-        ErrorMessage = errorMessage;
+        Info = new ResultInfo()
+        {
+            TypeCode = apiResponseTypes.Id,
+            ErrorCode = apiResponseTypes.ErrorCode,
+            ErrorMessage = string.IsNullOrEmpty(errorMessage) ? apiResponseTypes.ErrorMessage : errorMessage,
+            StatusCode = apiResponseTypes.StatusCode
+        };
         IsError = true;
+    }
+
+    protected Result(ApiResponseTypesEnumerations apiResponseTypes, params object[] values)
+    {
+        Info = new ResultInfo()
+        {
+            TypeCode = apiResponseTypes.Id,
+            ErrorCode = apiResponseTypes.ErrorCode,
+            ErrorMessage = string.Format(apiResponseTypes.ErrorMessagePattern, values),
+            StatusCode = apiResponseTypes.StatusCode
+        };
+        IsError = true;
+    }
+
+    protected Result(ResultInfo info, bool isError)
+    {
+        Info = info;
+        IsError = isError;
     }
 }
 
@@ -23,21 +49,27 @@ public class Result<T> : Result, IResult<T>
     private Result(T data)
     {
         Data = data;
+        IsError = false;
     }
 
-    private Result( string errorMessage) : base( errorMessage)
+    private Result(ApiResponseTypesEnumerations apiResponseTypes, params object[] values) : base(apiResponseTypes,
+        values)
     {
     }
 
-    public static Result<T> Success(T data) => new Result<T>(data);
-    
+    private Result(ResultInfo info, bool isError) : base(info, isError)
+    {
+    }
+
+    public static Result<T> Success(T data) => new(data);
+
     public static Result<T> Error(IResult errorResult)
     {
         if (!errorResult.IsError)
-            throw new ArgumentException("Data is not error");
-        return new Result<T>(errorResult.ErrorMessage);
+            throw new ArgumentException("This kind of result is success");
+        return new Result<T>(errorResult.Info, true);
     }
 
-    public static Result<T> Error(string errorMessage = null) =>
-        new Result<T>( errorMessage);
+    public static Result<T> Error(ApiResponseTypesEnumerations apiResponseTypes, params object[] values) =>
+        new Result<T>(apiResponseTypes, values);
 }

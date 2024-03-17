@@ -1,6 +1,7 @@
 ﻿using LLS.Identity.Database.IdentityModels;
 using LLS.Identity.Domain.Dtos;
 using LLS.Identity.Domain.Enumerations;
+using LLS.Identity.Domain.Enumerations.ApiResponseEnumeration;
 using LLS.Identity.Domain.ExternalServices;
 using LLS.Identity.Domain.Interfaces;
 using LLS.Identity.Domain.Results;
@@ -36,7 +37,7 @@ public class UserEmailAndPhoneVerificationService : IUserEmailAndPhoneVerificati
     {
         var user = await _userManager.FindByIdAsync(userId);
         if (user is null)
-            return Result<bool>.Error($"User with given id {userId} does not exist.");
+            return Result<bool>.Error(UserAuthApiResTypesEnumerations.UserWithIdNotExists, userId);
         await ProcessEmailToken(user);
         await ProcessSendSmsToken(user);
         return Result<bool>.Success(true);
@@ -46,17 +47,17 @@ public class UserEmailAndPhoneVerificationService : IUserEmailAndPhoneVerificati
     {
         var user = await _userManager.FindByIdAsync(userId);
         if (user is null)
-            return Result<bool>.Error($"User with given id {userId} does not exist.");
+            return Result<bool>.Error(UserAuthApiResTypesEnumerations.UserWithIdNotExists, userId);
         var emailActiveToken =
             await _userTokenService.GetActive(user, UserTokenEnum.EmailConfirmation, _expirationSpan);
         var phoneActiveToken =
             await _userTokenService.GetActive(user, UserTokenEnum.PhoneConfirmation, _expirationSpan);
-        
+
         if (!string.IsNullOrEmpty(emailActiveToken) || string.IsNullOrEmpty(phoneActiveToken))
-            return Result<bool>.Error("Inactive tokens");
+            return Result<bool>.Error(UserAuthApiResTypesEnumerations.InactiveToken);
         if (!string.Equals(emailToken, emailActiveToken) || !string.Equals(phoneToken, phoneActiveToken))
-            return Result<bool>.Error("Incorrect tokens");
-        
+            return Result<bool>.Error(UserAuthApiResTypesEnumerations.InactiveToken);
+
         await _userManager.UpdateAsync(user.Confirmed());
         await _userTokenService.Remove(user, UserTokenEnum.EmailConfirmation);
         await _userTokenService.Remove(user, UserTokenEnum.PhoneConfirmation);
@@ -67,28 +68,28 @@ public class UserEmailAndPhoneVerificationService : IUserEmailAndPhoneVerificati
     {
         var user = await _userManager.FindByIdAsync(userId);
         if (user is null)
-            return Result<bool>.Error($"User with given id {userId} does not exist.");
+            return Result<bool>.Error(UserAuthApiResTypesEnumerations.UserWithIdNotExists, userId);
 
         var emailActiveToken =
             await _userTokenService.GetActive(user, UserTokenEnum.EmailConfirmation, _expirationSpan);
         var phoneActiveToken =
             await _userTokenService.GetActive(user, UserTokenEnum.PhoneConfirmation, _expirationSpan);
         if (!string.IsNullOrEmpty(emailActiveToken) || string.IsNullOrEmpty(phoneActiveToken))
-            return Result<bool>.Error("Tokens are active");
+            return Result<bool>.Error(UserAuthApiResTypesEnumerations.UserWithIdNotExists, userId);
 
         var emailToken = await _userTokenService.Get(user, UserTokenEnum.EmailConfirmation);
         var phoneToken = await _userTokenService.Get(user, UserTokenEnum.PhoneConfirmation);
         if (!string.IsNullOrEmpty(emailToken) || string.IsNullOrEmpty(phoneToken))
-            return Result<bool>.Error("Incorrect tokens");
+            return Result<bool>.Error(UserAuthApiResTypesEnumerations.UserConfirmationToken);
 
         if (!string.Equals(emailUserToken, emailToken) || !string.Equals(phoneUserToken, phoneToken))
-            return Result<bool>.Error("Incorrect tokens");
+            return Result<bool>.Error(UserAuthApiResTypesEnumerations.UserConfirmationToken);
 
         await _userTokenService.Remove(user, UserTokenEnum.EmailConfirmation);
         await _userTokenService.Remove(user, UserTokenEnum.PhoneConfirmation);
 
         var result = await Send(userId);
-        return result.IsError ? Result<bool>.Error(result.ErrorMessage) : Result<bool>.Success(true);
+        return result.IsError ? Result<bool>.Error(result) : Result<bool>.Success(true);
     }
 
     private async Task<IResult<string>> ProcessEmailToken(User user)

@@ -14,8 +14,6 @@ public static class AuthApis
                 async (LoginUser loginUser, ILoginService loginService) =>
                 {
                     var result = await loginService.Login(loginUser);
-                    if (result.IsError)
-                        return Results.BadRequest(result.ErrorMessage);
                     return Results.Ok(new { Token = result.Data });
                 })
             .WithName("user")
@@ -25,8 +23,6 @@ public static class AuthApis
                 async (RegisterUser registerUser, IUserRegistrationService registerService) =>
                 {
                     var result = await registerService.Reqister(registerUser);
-                    if (result.IsError)
-                        return Results.BadRequest(result.ErrorMessage);
                     return Results.Ok(result);
                 })
             .WithName("User registration")
