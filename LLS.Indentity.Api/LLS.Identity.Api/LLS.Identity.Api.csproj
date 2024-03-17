@@ -21,8 +21,4 @@
       <ProjectReference Include="..\LLS.Identity.Infrastructure\LLS.Identity.Infrastructure.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Extensions\" />
-    </ItemGroup>
-
 </Project>

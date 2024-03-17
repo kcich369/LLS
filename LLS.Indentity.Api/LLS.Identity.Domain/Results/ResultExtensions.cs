@@ -1,5 +1,4 @@
-﻿using LLS.Identity.Domain.Enumerations.ApiResponseEnumeration;
-using LLS.Identity.Domain.Enumerations.Base;
+﻿using LLS.Identity.Domain.Enumerations.Base;
 
 namespace LLS.Identity.Domain.Results;
 

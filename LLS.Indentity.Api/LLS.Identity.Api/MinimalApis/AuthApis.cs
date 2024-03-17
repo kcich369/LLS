@@ -1,4 +1,5 @@
-﻿using LLS.Identity.Database.Commands;
+﻿using LLS.Identity.Api.Extensions;
+using LLS.Identity.Database.Commands;
 using LLS.Identity.Domain.Commands;
 using LLS.Identity.Domain.Dtos;
 using LLS.Identity.Domain.ExternalServices;
@@ -14,7 +15,7 @@ public static class AuthApis
                 async (LoginUser loginUser, ILoginService loginService) =>
                 {
                     var result = await loginService.Login(loginUser);
-                    return Results.Ok(new { Token = result.Data });
+                    return result.ToResult();
                 })
             .WithName("user")
             .WithOpenApi();
@@ -23,7 +24,7 @@ public static class AuthApis
                 async (RegisterUser registerUser, IUserRegistrationService registerService) =>
                 {
                     var result = await registerService.Reqister(registerUser);
-                    return Results.Ok(result);
+                    return result.ToResult();
                 })
             .WithName("User registration")
             .WithOpenApi();
