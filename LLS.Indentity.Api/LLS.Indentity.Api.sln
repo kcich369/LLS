@@ -1,12 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLS.Identity.Api", "LLS.Identity.Api\LLS.Identity.Api.csproj", "{B3424938-73FE-43F6-95FD-D6B008A14057}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLS.Api", "LLS.Api\LLS.Api.csproj", "{B3424938-73FE-43F6-95FD-D6B008A14057}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLS.Identity.Infrastructure", "LLS.Identity.Infrastructure\LLS.Identity.Infrastructure.csproj", "{F74721E5-176D-4E70-B7F7-7A9616496715}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLS.Infrastructure", "LLS.Infrastructure\LLS.Infrastructure.csproj", "{F74721E5-176D-4E70-B7F7-7A9616496715}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLS.Identity.Database", "LLS.Identity.Database\LLS.Identity.Database.csproj", "{0EACD98B-C99E-4C9F-A533-0FFC11B2333B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLS.Database", "LLS.Database\LLS.Database.csproj", "{0EACD98B-C99E-4C9F-A533-0FFC11B2333B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLS.Identity.Domain", "LLS.Identity.Domain\LLS.Identity.Domain.csproj", "{42ACC2A5-A54B-4601-9ED4-E142E9143CA6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLS.Domain", "LLS.Domain\LLS.Domain.csproj", "{42ACC2A5-A54B-4601-9ED4-E142E9143CA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
