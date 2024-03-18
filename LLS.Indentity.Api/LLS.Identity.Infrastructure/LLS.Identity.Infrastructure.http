@@ -1,6 +1,0 @@
-@LLS.Identity.Infrastructure_HostAddress = http://localhost:5187
-
-GET {{LLS.Identity.Infrastructure_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
